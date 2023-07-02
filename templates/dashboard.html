@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+       .centered-form {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+        }
+
+        .centered-form form {
+          text-align: center;
+        }
+
+        .centered-form input[type="text"],
+        .centered-form button {
+          margin: 10px;
+          padding: 10px;
+          font-size: 20px;
+          border: none;
+          border-radius: 4px;
+        }
+
+        .centered-form input[type="text"] {
+          width: 400px;
+          background-color: #f2f2f2;
+        }
+
+        .centered-form button {
+          width: 100px;
+          background-color: #4285f4;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        .centered-form button:hover {
+          background-color: #3367d6;
+        }
+    </style>
+</head>
+<body>
+ <h1 style="text-align: center;";> World Data</h1>
+<div class="centered-form">
+
+  <form method="GET" action="{% url 'search_results' %}">
+    <input type="text" name="query" placeholder="Search...">
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+
+<!-- Add JavaScript code for autocomplete -->
+<!-- Minimum characters before triggering autocomplete-->
+<!--  Handle selection of autocomplete suggestion if needed-->
+<script>
+$(document).ready(function() {
+  $('input[name="query"]').autocomplete({
+    source: "{% url 'autocomplete' %}",
+    minLength: 2,
+    select: function(event, ui) {
+    }
+  });
+});
+</script>
+</body>
+
+</html>
